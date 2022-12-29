@@ -1,45 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttersample/view/homepage.dart';
-
 void main(){
 
-  runApp(Home());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: "ProfileApp",
+    home: Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(' Profile App'),
+      ),
+      body: Column(
+        children:[
+          SizedBox(height: 10,),
+          Center(child:Image.asset('assets/image/book.jpg',height: 250,width: 250,)),
+          SizedBox(height: 10,),
+          Text("Name : Murari Thapa",style:TextStyle(fontSize: 24,color:Colors.red,fontWeight:FontWeight.bold )),//text
+          SizedBox(height: 5),
+          Text('Address: Kathmandu,Nepal',style:TextStyle(fontSize:19),),
+          SizedBox(height: 5),
+          Text('Email:Murarithapa4@gmail.com'),
+          SizedBox(height: 100),
+          Text('Develop By :Murari Thapa'),
 
+
+
+        ],
+      ),
+    ),
+
+  ));
 }
 
-class Home extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-      //
-      //   theme: ThemeData().copyWith(
-      //     buttonTheme: ButtonThemeData().copyWith(
-      //       buttonColor: Colors.pink
-      //     ),
-      //         backgroundColor: Colors.green,
-      //   ),
-      //
-    );
-  }
 
-}
+
+// import 'package:flutter/material.dart';
 
 
 
-
-
-
-
-
-
-
-
-
-
+// import 'package:flutter/services.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:fluttersample/view/homepage.dart';
+//
+// void main(){
+//
+//   runApp(Home());
+//
+// }
+// class Home extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ScreenUtilInit(
+//       designSize: const Size(360,640),
+//       minTextAdapt: true,
+//       builder: (context , child) {
+//         return MaterialApp(
+//           debugShowCheckedModeBanner: false,
+//           home: child,
+//         );
+//       },
+//       child:  HomePage(),
+//     );
+//   }
+// }
 // import 'package:sampleflutter/models/bank.dart';
 // import 'package:sampleflutter/models/cars.dart';
 // import 'package:sampleflutter/models/inheritance.dart';
