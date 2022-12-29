@@ -9,26 +9,10 @@ int a = 90;
 
   class Car implements Vehicle{
   @override
-  int a;
+  int a = 90;
 
   @override
-  int wheel;
-
-  @override
-  void drive() {
-    // TODO: implement drive
-  }
-
-
-  }
-
-  }
-  class Bike implements Vehicle{
-  @override
-  int a;
-
-  @override
-  int wheel;
+  int wheel = 20;
 
   @override
   void drive() {
@@ -37,6 +21,11 @@ int a = 90;
 
 
   }
+
+
+
+
+
 
 // class A{
 //   void breath(){
@@ -68,4 +57,3 @@ int a = 90;
 //     print('cat is eating');
 //     super.eat();
 //   }
-}
