@@ -1,130 +1,98 @@
 import 'package:flutter/material.dart';
-void main(){
-
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: "ProfileApp",
-    home: Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(' Profile App'),
-      ),
-      body: Column(
-        children:[
-          SizedBox(height: 10,),
-          Center(child:Image.asset('assets/image/book.jpg',height: 250,width: 250,)),
-          SizedBox(height: 10,),
-          Text("Name : Murari Thapa",style:TextStyle(fontSize: 24,color:Colors.red,fontWeight:FontWeight.bold )),//text
-          SizedBox(height: 5),
-          Text('Address: Kathmandu,Nepal',style:TextStyle(fontSize:19),),
-          SizedBox(height: 5),
-          Text('Email:Murarithapa4@gmail.com'),
-          SizedBox(height: 100),
-          Text('Develop By :Murari Thapa'),
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:fluttersample/models/book.dart';
+// import 'package:fluttersample/constants/colors.dart';
+// import 'package:fluttersample/models/book.dart';
+import 'package:fluttersample/providers/counter_provider.dart';
+import 'package:fluttersample/view/homepage.dart';
+// import 'package:fluttersample/view/fyp.dart';
+// import 'package:fluttersample/view/fyp.dart';
+import 'package:get/get.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'constant/color.dart';
+import 'models/todo2.dart';
+// import 'models/bookdetail.dart';
+// import 'models/bookdetail.dart';
 
 
 
-        ],
-      ),
-    ),
 
-  ));
+
+void main (){
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: appColor
+      )
+  );
+  runApp(ProviderScope(child: Home()));
 }
 
 
+class Home extends StatelessWidget {
 
-// import 'package:flutter/material.dart';
-
-
-
-// import 'package:flutter/services.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:fluttersample/view/homepage.dart';
-//
-// void main(){
-//
-//   runApp(Home());
-//
-// }
-// class Home extends StatelessWidget {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return ScreenUtilInit(
-//       designSize: const Size(360,640),
-//       minTextAdapt: true,
-//       builder: (context , child) {
-//         return MaterialApp(
-//           debugShowCheckedModeBanner: false,
-//           home: child,
-//         );
-//       },
-//       child:  HomePage(),
-//     );
-//   }
-// }
-// import 'package:sampleflutter/models/bank.dart';
-// import 'package:sampleflutter/models/cars.dart';
-// import 'package:sampleflutter/models/inheritance.dart';
-//
-//
-// extension adding on List<int>{
-//
-//   int total (){
-//     return this.reduce((value, element) => value + element);
-//   }
-//
-// }
-//
-//
-// void main(){
-//
-//   List<int> some=[11,22,33,44];
-//   print(some.total());
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(411, 866),
+      minTextAdapt: true,
+      builder: (context , child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: child,
+        );
+      },
+      child: TODOAPP(),
+    );
+  }
+}
 
 
-// final sometxt = 'hello';
-// print(sometxt.duplicateText());
+class Count extends StatefulWidget {
+  @override
+  State<Count> createState() => _CountState();
+}
 
+class _CountState extends State<Count> {
+  // final String name;
+  @override
+  Widget build(BuildContext context) {
+    print('build  start');
+    return Scaffold(
+      body:  SafeArea(
+        child: Consumer(
+            builder: (context, ref, child) {
+              final number = ref.watch(countStateProvider);
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('${number}', style: TextStyle(fontSize: 50),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                           // ref.read(counterProvider).addNumber();
+                            ref.read(countStateProvider.notifier).state++;
+                          },
+                          child: Text('add')
+                      ),
+                      SizedBox(width: 20,),
+                      ElevatedButton(
+                          onPressed: () {
+                            // ref.read(counterProvider).minusNumber();
+                            ref.read(countStateProvider.notifier).state--;
+                          },
+                          child: Text('minus')
+                      )
+                    ],
+                  )
+                ],
+              );
+            }
+        ),
+      ),
 
-// final  per = Person();
-// per.runall();
-
-// const data=[
-//   {
-//     'id':1,
-//     'title':'ram'
-//   },
-//   {
-//     'id':2,
-//
-//   }
-// ];
-//
-// final d = data[1]['title'] ?? 'no-title';
-// print (d);
-
-
-
-
-
-// String? image;
-//
-// print (image);
-//
-//
-// int? a;
-// int b =90;
-//
-// if (b>89){
-//   a=90;
-// }
-//
-// final sum=a! + 9090;
-
-// final dog1= dog();
-// final cat1= cat();
-// dog1.eat();
-// cat1.sit();
-
-
+    );
+  }
+}
