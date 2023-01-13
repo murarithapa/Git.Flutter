@@ -25,7 +25,9 @@ Future<void>  getData () async{
 
 
 
-void main (){
+void main ()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Future.delayed(Duration(milliseconds: 500));
 
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
@@ -46,7 +48,7 @@ class Home extends StatelessWidget {
       minTextAdapt: true,
       builder: (context , child) {
         return GetMaterialApp(
-          theme: ThemeData.dark(),
+          theme: ThemeData.fallback(),
           debugShowCheckedModeBanner: false,
           home: child,
         );
